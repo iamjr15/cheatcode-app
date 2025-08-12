@@ -36,7 +36,7 @@ const sections = [
   },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -85,17 +85,17 @@ export default function WithComparisonTable() {
                 Buy plan
               </a>
               <ul role="list" className="mt-10 space-y-4 text-sm/6 text-gray-900">
-                {sections.map((section) => (
+                        {sections.map((section) => (
                   <li key={section.name}>
                     <ul role="list" className="space-y-4">
                       {section.features.map((feature) =>
-                        feature.tiers[tier.name] ? (
+                        feature.tiers[tier.name as 'Starter' | 'Growth' | 'Scale'] ? (
                           <li key={feature.name} className="flex gap-x-3">
                             <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-indigo-600" />
                             <span>
                               {feature.name}{' '}
-                              {typeof feature.tiers[tier.name] === 'string' ? (
-                                <span className="text-sm/6 text-gray-500">({feature.tiers[tier.name]})</span>
+                              {typeof feature.tiers[tier.name as 'Starter' | 'Growth' | 'Scale'] === 'string' ? (
+                                <span className="text-sm/6 text-gray-500">({feature.tiers[tier.name as 'Starter' | 'Growth' | 'Scale']})</span>
                               ) : null}
                             </span>
                           </li>
@@ -181,26 +181,26 @@ export default function WithComparisonTable() {
                         <div className="absolute inset-x-8 mt-4 h-px bg-gray-900/10" />
                       </th>
                     </tr>
-                    {section.features.map((feature) => (
+                          {section.features.map((feature) => (
                       <tr key={feature.name}>
                         <th scope="row" className="py-4 text-sm/6 font-normal text-gray-900">
                           {feature.name}
                           <div className="absolute inset-x-8 mt-4 h-px bg-gray-900/5" />
                         </th>
-                        {tiers.map((tier) => (
+                            {tiers.map((tier) => (
                           <td key={tier.id} className="px-6 py-4 xl:px-8">
-                            {typeof feature.tiers[tier.name] === 'string' ? (
-                              <div className="text-center text-sm/6 text-gray-500">{feature.tiers[tier.name]}</div>
+                            {typeof feature.tiers[tier.name as 'Starter' | 'Growth' | 'Scale'] === 'string' ? (
+                              <div className="text-center text-sm/6 text-gray-500">{feature.tiers[tier.name as 'Starter' | 'Growth' | 'Scale']}</div>
                             ) : (
                               <>
-                                {feature.tiers[tier.name] === true ? (
+                                {feature.tiers[tier.name as 'Starter' | 'Growth' | 'Scale'] === true ? (
                                   <CheckIcon aria-hidden="true" className="mx-auto size-5 text-indigo-600" />
                                 ) : (
                                   <MinusIcon aria-hidden="true" className="mx-auto size-5 text-gray-400" />
                                 )}
 
                                 <span className="sr-only">
-                                  {feature.tiers[tier.name] === true ? 'Included' : 'Not included'} in {tier.name}
+                                  {feature.tiers[tier.name as 'Starter' | 'Growth' | 'Scale'] === true ? 'Included' : 'Not included'} in {tier.name}
                                 </span>
                               </>
                             )}

@@ -28,7 +28,7 @@ const tiers = [
   },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ')
 }
 
