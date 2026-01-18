@@ -1,12 +1,16 @@
 {
   "name": "cheatcode-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "next": "16.1.3",
